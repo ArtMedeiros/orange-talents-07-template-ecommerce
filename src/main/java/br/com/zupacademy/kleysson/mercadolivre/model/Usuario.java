@@ -1,5 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.model;
 
+import io.jsonwebtoken.lang.Assert;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -18,7 +19,7 @@ public class Usuario {
     @Email
     @NotBlank
     @Column(unique = true, nullable = false)
-    private String login;
+    private String email;
 
     @NotBlank
     @Column(nullable = false)
@@ -26,13 +27,17 @@ public class Usuario {
     private String senha;
 
     @Column(nullable = false)
-    private LocalDateTime dataCadastro = LocalDateTime.now();
+    private LocalDateTime dataCadastro;
 
     @Deprecated
     public Usuario() {}
 
-    public Usuario(@NotBlank String login, @NotBlank @Length(min = 6) SenhaLimpa senha) {
-        this.login = login;
-        this.senha = new BCryptPasswordEncoder().encode(senha.getPassword());
+    public Usuario(@NotBlank String email, @NotBlank @Length(min = 6) SenhaLimpa senha) {
+        Assert.hasLength(email, "O email não pode estar vazio");
+        Assert.notNull(senha, "A senha não pode ser nula");
+
+        this.email = email;
+        this.senha = senha.getSenha();
+        this.dataCadastro = LocalDateTime.now();
     }
 }

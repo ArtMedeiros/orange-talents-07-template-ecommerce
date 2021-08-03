@@ -1,6 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.model;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
@@ -10,13 +10,16 @@ public class SenhaLimpa {
 
     @NotBlank
     @Size(min = 6)
-    private String password;
+    private String senha;
 
-    public SenhaLimpa(@NotBlank @Size(min = 6) String password) {
-        this.password = password;
+    public SenhaLimpa(@NotBlank @Size(min = 6) String senha) {
+        Assert.hasLength(senha, "A senha não pode estar vazia");
+        Assert.isTrue(senha.length() >= 6, "A senha deve conter no mínimo 6 caracteres");
+
+        this.senha = senha;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return new BCryptPasswordEncoder().encode(senha);
     }
 }

@@ -1,5 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 
+import br.com.zupacademy.kleysson.mercadolivre.config.validation.Unique;
 import br.com.zupacademy.kleysson.mercadolivre.model.SenhaLimpa;
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
 
@@ -11,6 +12,7 @@ public class UsuarioCadastroRequest {
 
     @NotBlank
     @Email
+    @Unique(field = "email", entity = Usuario.class)
     private String email;
 
     @NotBlank
