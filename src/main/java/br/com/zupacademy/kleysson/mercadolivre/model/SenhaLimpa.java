@@ -1,7 +1,7 @@
 package br.com.zupacademy.kleysson.mercadolivre.model;
 
-import io.jsonwebtoken.lang.Assert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
