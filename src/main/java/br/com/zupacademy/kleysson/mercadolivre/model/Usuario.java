@@ -28,8 +28,7 @@ public class Usuario {
     @Column(nullable = false)
     private LocalDateTime dataCadastro;
 
-    @Deprecated
-    public Usuario() {}
+    private Usuario() {}
 
     public Usuario(@NotBlank String email, @NotBlank @Length(min = 6) SenhaLimpa senha) {
         Assert.hasLength(email, "O email não pode estar vazio");
