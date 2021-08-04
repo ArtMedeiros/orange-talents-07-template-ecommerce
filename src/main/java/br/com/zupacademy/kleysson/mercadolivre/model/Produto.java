@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,9 @@ public class Produto {
 
     @ElementCollection
     private Set<String> imagens;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<Opiniao> opinioes;
 
     @NotBlank
     @Column(nullable = false, length = 1000)
@@ -76,6 +80,7 @@ public class Produto {
         this.dono = usuario;
 
         this.imagens = new HashSet<>();
+        this.opinioes = new HashSet<>();
     }
 
     public boolean isDono(Usuario usuario){
