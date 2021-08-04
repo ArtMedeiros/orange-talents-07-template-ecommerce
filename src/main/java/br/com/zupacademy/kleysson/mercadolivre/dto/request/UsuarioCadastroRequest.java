@@ -3,6 +3,7 @@ package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 import br.com.zupacademy.kleysson.mercadolivre.config.validation.Unique;
 import br.com.zupacademy.kleysson.mercadolivre.model.SenhaLimpa;
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -19,15 +20,13 @@ public class UsuarioCadastroRequest {
     @Size(min = 6)
     private String senha;
 
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public UsuarioCadastroRequest(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Usuario converter() {
         return new Usuario(email, new SenhaLimpa(senha));
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
     }
 }

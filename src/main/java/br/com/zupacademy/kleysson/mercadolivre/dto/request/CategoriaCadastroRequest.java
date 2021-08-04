@@ -3,6 +3,7 @@ package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 import br.com.zupacademy.kleysson.mercadolivre.config.validation.Unique;
 import br.com.zupacademy.kleysson.mercadolivre.model.Categoria;
 import br.com.zupacademy.kleysson.mercadolivre.repository.CategoriaRepository;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Optional;
@@ -15,6 +16,13 @@ public class CategoriaCadastroRequest {
 
     private Long categoriaMae;
 
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public CategoriaCadastroRequest(String nome, Long categoriaMae) {
+        this.nome = nome;
+        this.categoriaMae = categoriaMae;
+    }
+
+
     public Categoria converter(CategoriaRepository categoriaRepository){
         Categoria categoria = new Categoria(nome);
 
@@ -24,10 +32,6 @@ public class CategoriaCadastroRequest {
         }
 
         return categoria;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Long getCategoriaMae() {

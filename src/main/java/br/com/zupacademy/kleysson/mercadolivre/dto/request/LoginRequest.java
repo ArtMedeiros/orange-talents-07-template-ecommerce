@@ -1,5 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.*;
@@ -14,12 +15,10 @@ public class LoginRequest {
     @Size(min = 6)
     private String senha;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getSenha() {
-        return senha;
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public LoginRequest(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
     }
 
     public UsernamePasswordAuthenticationToken converter() {
