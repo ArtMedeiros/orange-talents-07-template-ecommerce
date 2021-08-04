@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 @Embeddable
 public class Caracteristica {
@@ -31,5 +32,18 @@ public class Caracteristica {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Caracteristica that = (Caracteristica) o;
+        return nome.equals(that.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome);
     }
 }

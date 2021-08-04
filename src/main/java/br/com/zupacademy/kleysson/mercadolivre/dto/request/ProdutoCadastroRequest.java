@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class ProdutoCadastroRequest {
 
@@ -28,7 +28,7 @@ public class ProdutoCadastroRequest {
 
     @NotNull
     @Size(min = 3)
-    private List<Caracteristica> caracteristicas;
+    private Set<Caracteristica> caracteristicas;
 
     @NotBlank
     @Length(max = 1000)
@@ -39,7 +39,7 @@ public class ProdutoCadastroRequest {
     private Long categoria;
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public ProdutoCadastroRequest(String nome, Double valor, Integer quantidade, List<Caracteristica> caracteristicas, String descricao, Long categoria) {
+    public ProdutoCadastroRequest(String nome, Double valor, Integer quantidade, Set<Caracteristica> caracteristicas, String descricao, Long categoria) {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;

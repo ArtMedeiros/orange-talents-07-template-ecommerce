@@ -5,7 +5,9 @@ import org.springframework.util.Assert;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Produto {
@@ -32,7 +34,10 @@ public class Produto {
     @Size(min = 3)
     @Embedded
     @ElementCollection
-    private List<Caracteristica> caracteristicas;
+    private Set<Caracteristica> caracteristicas;
+
+    @ElementCollection
+    private Set<String> imagens;
 
     @NotBlank
     @Column(nullable = false, length = 1000)
@@ -44,13 +49,13 @@ public class Produto {
 
     @NotNull
     @ManyToOne
-    private Usuario usuario;
+    private Usuario dono;
 
     private LocalDateTime dataCadastro;
 
     private Produto() {}
 
-    public Produto(String nome, Double valor, Integer quantidade, List<Caracteristica> caracteristicas, String descricao, Categoria categoria, Usuario usuario) {
+    public Produto(String nome, Double valor, Integer quantidade, Set<Caracteristica> caracteristicas, String descricao, Categoria categoria, Usuario usuario) {
         Assert.hasLength(nome, "O nome não pode estar vazio");
         Assert.notNull(valor, "O valor não pode estar vazio");
         Assert.isTrue(valor > 0, "O valor deve ser maior do que 0");
@@ -68,6 +73,16 @@ public class Produto {
         this.descricao = descricao;
         this.categoria = categoria;
         this.dataCadastro = LocalDateTime.now();
-        this.usuario = usuario;
+        this.dono = usuario;
+
+        this.imagens = new HashSet<>();
+    }
+
+    public boolean isDono(Usuario usuario){
+        return this.dono.equals(usuario);
+    }
+
+    public void adicionaImagens(Set<String> imagens) {
+        this.imagens.addAll(imagens);
     }
 }
