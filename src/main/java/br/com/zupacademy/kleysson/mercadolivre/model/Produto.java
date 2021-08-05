@@ -90,4 +90,12 @@ public class Produto {
     public void adicionaImagens(Set<String> imagens) {
         this.imagens.addAll(imagens);
     }
+
+    public Usuario getDono() {
+        return dono;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
