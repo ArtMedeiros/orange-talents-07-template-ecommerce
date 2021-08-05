@@ -3,9 +3,12 @@ package br.com.zupacademy.kleysson.mercadolivre.controller;
 import br.com.zupacademy.kleysson.mercadolivre.config.files.Uploader;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.AdicionarImagemRequest;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.ProdutoCadastroRequest;
+import br.com.zupacademy.kleysson.mercadolivre.dto.response.DetalhesProdutoResponse;
+import br.com.zupacademy.kleysson.mercadolivre.model.Pergunta;
 import br.com.zupacademy.kleysson.mercadolivre.model.Produto;
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
 import br.com.zupacademy.kleysson.mercadolivre.repository.CategoriaRepository;
+import br.com.zupacademy.kleysson.mercadolivre.repository.PerguntaRepository;
 import br.com.zupacademy.kleysson.mercadolivre.repository.ProdutoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +25,13 @@ import java.util.Set;
 public class ProdutoController {
 
     private final ProdutoRepository produtoRepository;
+    private final PerguntaRepository perguntaRepository;
     private final CategoriaRepository categoriaRepository;
     private final Uploader uploaderFile;
 
-    public ProdutoController(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, Uploader uploaderFile) {
+    public ProdutoController(ProdutoRepository produtoRepository, PerguntaRepository perguntaRepository, CategoriaRepository categoriaRepository, Uploader uploaderFile) {
         this.produtoRepository = produtoRepository;
+        this.perguntaRepository = perguntaRepository;
         this.categoriaRepository = categoriaRepository;
         this.uploaderFile = uploaderFile;
     }
@@ -58,5 +63,18 @@ public class ProdutoController {
         produtoObj.get().adicionaImagens(listaLinks);
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalhesProdutoResponse> detalhesProduto(@PathVariable Long id) {
+        Optional<Produto> produtoObj = produtoRepository.findById(id);
+
+        //Verifica se o produto está cadastrado
+        if(produtoObj.isEmpty())
+            return ResponseEntity.notFound().build();
+
+        DetalhesProdutoResponse detalhesProduto = new DetalhesProdutoResponse(produtoObj.get());
+
+        return ResponseEntity.ok().body(detalhesProduto);
     }
 }

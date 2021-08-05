@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class Pergunta {
@@ -55,5 +56,18 @@ public class Pergunta {
 
     public Usuario getDonoProduto() {
         return produto.getDono();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pergunta pergunta = (Pergunta) o;
+        return titulo.equals(pergunta.titulo) && interessado.equals(pergunta.interessado) && produto.equals(pergunta.produto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, interessado, produto);
     }
 }

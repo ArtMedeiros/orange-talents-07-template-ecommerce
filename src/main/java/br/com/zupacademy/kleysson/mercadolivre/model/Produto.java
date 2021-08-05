@@ -5,10 +5,10 @@ import org.springframework.util.Assert;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Entity
 public class Produto {
@@ -42,6 +42,9 @@ public class Produto {
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private Set<Opiniao> opinioes;
+
+    @OneToMany(mappedBy = "produto")
+    private Set<Pergunta> perguntas;
 
     @NotBlank
     @Column(nullable = false, length = 1000)
@@ -81,6 +84,7 @@ public class Produto {
 
         this.imagens = new HashSet<>();
         this.opinioes = new HashSet<>();
+        this.perguntas = new HashSet<>();
     }
 
     public boolean isDono(Usuario usuario){
@@ -97,5 +101,30 @@ public class Produto {
 
     public String getNome() {
         return nome;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public Set<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public Set<String> getImagens() {
+        return imagens;
+    }
+
+    public Set<Opiniao> getOpinioes() {
+        return opinioes;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public <T> Set<T> mapeiaPerguntas(Function<Pergunta, T> mapeador) {
+        return this.perguntas.stream().map(mapeador)
+                .collect(Collectors.toSet());
     }
 }
