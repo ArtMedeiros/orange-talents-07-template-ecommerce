@@ -1,12 +1,14 @@
 package br.com.zupacademy.kleysson.mercadolivre.model;
 
+import br.com.zupacademy.kleysson.mercadolivre.dto.request.PagamentoRequest;
 import io.jsonwebtoken.lang.Assert;
 
 import javax.persistence.*;
-import javax.sql.RowSet;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Compra {
@@ -38,6 +40,9 @@ public class Compra {
     @Positive
     private Double valorCompra;
 
+    @OneToMany(mappedBy = "compra", cascade = CascadeType.PERSIST)
+    private Set<Pagamento> listaPagamentos = new HashSet<>();
+
     private Compra() {}
 
     public Compra(Produto produto, int quantidade, Usuario comprador, GatewayPagamento pagamento) {
@@ -49,6 +54,7 @@ public class Compra {
         this.produto = produto;
         this.quantidade = quantidade;
         this.comprador = comprador;
+        this.pagamento = pagamento;
         this.status = StatusCompra.INICIADA;
         this.valorCompra = produto.getValor();
     }
@@ -71,5 +77,33 @@ public class Compra {
 
     public Long getId() {
         return this.id;
+    }
+
+    public Double getValorCompra() {
+        return valorCompra;
+    }
+
+    public GatewayPagamento getPagamento() {
+        return pagamento;
+    }
+
+    public StatusCompra getStatus() {
+        return status;
+    }
+
+    public void salvarTransacao(PagamentoRequest request, String formaPagamento) {
+        Assert.isTrue(!this.compraConcluida(), "Pagamento já efetivado");
+
+        GatewayPagamento gatewayPagamento = GatewayPagamento.valueOf(formaPagamento.toUpperCase());
+        Pagamento pagamento = request.converter(this, gatewayPagamento);
+
+        Assert.isTrue(!listaPagamentos.contains(pagamento), "Transação já realizada");
+
+        listaPagamentos.add(pagamento);
+        this.status = pagamento.getStatusNormalizado();
+    }
+
+    public boolean compraConcluida() {
+        return this.status.equals(StatusCompra.SUCESSO);
     }
 }

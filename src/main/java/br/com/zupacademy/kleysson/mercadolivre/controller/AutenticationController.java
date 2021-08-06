@@ -1,6 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.controller;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.security.TokenManager;
+import br.com.zupacademy.kleysson.mercadolivre.utils.security.TokenManager;
 import br.com.zupacademy.kleysson.mercadolivre.dto.TokenDTO;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.LoginRequest;
 import org.springframework.http.ResponseEntity;

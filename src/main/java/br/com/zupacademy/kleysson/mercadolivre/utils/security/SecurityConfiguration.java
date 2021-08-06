@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.security;
+package br.com.zupacademy.kleysson.mercadolivre.utils.security;
 
 import br.com.zupacademy.kleysson.mercadolivre.repository.UsuarioRepository;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/produtos/{id:[0-9]+}").permitAll()
                 .antMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/outros-servicos/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

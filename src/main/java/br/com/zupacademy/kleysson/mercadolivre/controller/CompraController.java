@@ -1,6 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.controller;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.email.Email;
+import br.com.zupacademy.kleysson.mercadolivre.utils.email.Email;
 import br.com.zupacademy.kleysson.mercadolivre.dto.ErrorFormatDTO;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.DadosCompraRequest;
 import br.com.zupacademy.kleysson.mercadolivre.model.Compra;

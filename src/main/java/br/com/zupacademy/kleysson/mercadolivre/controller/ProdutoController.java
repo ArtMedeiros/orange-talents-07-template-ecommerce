@@ -1,10 +1,9 @@
 package br.com.zupacademy.kleysson.mercadolivre.controller;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.files.Uploader;
+import br.com.zupacademy.kleysson.mercadolivre.utils.files.Uploader;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.AdicionarImagemRequest;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.ProdutoCadastroRequest;
 import br.com.zupacademy.kleysson.mercadolivre.dto.response.DetalhesProdutoResponse;
-import br.com.zupacademy.kleysson.mercadolivre.model.Pergunta;
 import br.com.zupacademy.kleysson.mercadolivre.model.Produto;
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
 import br.com.zupacademy.kleysson.mercadolivre.repository.CategoriaRepository;

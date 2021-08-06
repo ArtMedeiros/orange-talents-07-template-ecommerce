@@ -1,15 +1,13 @@
 package br.com.zupacademy.kleysson.mercadolivre.controller;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.validation.CategoriaExisteValidator;
+import br.com.zupacademy.kleysson.mercadolivre.utils.validation.CategoriaExisteValidator;
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.CategoriaCadastroRequest;
-import br.com.zupacademy.kleysson.mercadolivre.model.Categoria;
 import br.com.zupacademy.kleysson.mercadolivre.repository.CategoriaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")

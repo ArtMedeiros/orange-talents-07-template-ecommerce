@@ -1,7 +1,6 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.validation;
+package br.com.zupacademy.kleysson.mercadolivre.utils.validation;
 
 import br.com.zupacademy.kleysson.mercadolivre.dto.ErrorFormatDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -35,5 +34,11 @@ public class ValidationHandler {
         });
 
         return dto;
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ErrorFormatDTO handleIllegal(IllegalArgumentException exception) {
+        return new ErrorFormatDTO("request", exception.getLocalizedMessage());
     }
 }

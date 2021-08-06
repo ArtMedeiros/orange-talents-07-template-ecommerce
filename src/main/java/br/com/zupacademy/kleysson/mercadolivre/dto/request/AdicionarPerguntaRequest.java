@@ -1,6 +1,5 @@
 package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.email.Email;
 import br.com.zupacademy.kleysson.mercadolivre.model.Pergunta;
 import br.com.zupacademy.kleysson.mercadolivre.model.Produto;
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;

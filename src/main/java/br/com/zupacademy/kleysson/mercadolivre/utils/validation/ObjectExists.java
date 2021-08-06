@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.validation;
+package br.com.zupacademy.kleysson.mercadolivre.utils.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.files;
+package br.com.zupacademy.kleysson.mercadolivre.utils.files;
 
 import io.jsonwebtoken.lang.Assert;
 import org.springframework.context.annotation.Profile;

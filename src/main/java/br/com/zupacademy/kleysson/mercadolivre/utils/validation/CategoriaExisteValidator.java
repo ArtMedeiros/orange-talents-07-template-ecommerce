@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.validation;
+package br.com.zupacademy.kleysson.mercadolivre.utils.validation;
 
 import br.com.zupacademy.kleysson.mercadolivre.dto.request.CategoriaCadastroRequest;
 import br.com.zupacademy.kleysson.mercadolivre.model.Categoria;

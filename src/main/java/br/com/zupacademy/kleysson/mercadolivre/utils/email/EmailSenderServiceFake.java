@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.email;
+package br.com.zupacademy.kleysson.mercadolivre.utils.email;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

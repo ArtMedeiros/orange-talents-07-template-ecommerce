@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.email;
+package br.com.zupacademy.kleysson.mercadolivre.utils.email;
 
 import javax.validation.constraints.NotBlank;
 

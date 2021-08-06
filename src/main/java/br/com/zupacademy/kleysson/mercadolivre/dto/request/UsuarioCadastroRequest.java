@@ -1,6 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.validation.Unique;
+import br.com.zupacademy.kleysson.mercadolivre.utils.validation.Unique;
 import br.com.zupacademy.kleysson.mercadolivre.model.SenhaLimpa;
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
 import com.fasterxml.jackson.annotation.JsonCreator;

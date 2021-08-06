@@ -1,13 +1,11 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.security;
+package br.com.zupacademy.kleysson.mercadolivre.utils.security;
 
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
 import br.com.zupacademy.kleysson.mercadolivre.repository.UsuarioRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

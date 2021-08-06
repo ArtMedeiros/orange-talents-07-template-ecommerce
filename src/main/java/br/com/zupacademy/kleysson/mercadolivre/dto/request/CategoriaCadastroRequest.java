@@ -1,6 +1,6 @@
 package br.com.zupacademy.kleysson.mercadolivre.dto.request;
 
-import br.com.zupacademy.kleysson.mercadolivre.config.validation.Unique;
+import br.com.zupacademy.kleysson.mercadolivre.utils.validation.Unique;
 import br.com.zupacademy.kleysson.mercadolivre.model.Categoria;
 import br.com.zupacademy.kleysson.mercadolivre.repository.CategoriaRepository;
 import com.fasterxml.jackson.annotation.JsonCreator;

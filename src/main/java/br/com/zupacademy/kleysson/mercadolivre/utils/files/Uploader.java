@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.files;
+package br.com.zupacademy.kleysson.mercadolivre.utils.files;
 
 import org.springframework.web.multipart.MultipartFile;
 

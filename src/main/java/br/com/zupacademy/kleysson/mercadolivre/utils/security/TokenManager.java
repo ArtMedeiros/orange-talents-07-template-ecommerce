@@ -1,4 +1,4 @@
-package br.com.zupacademy.kleysson.mercadolivre.config.security;
+package br.com.zupacademy.kleysson.mercadolivre.utils.security;
 
 import br.com.zupacademy.kleysson.mercadolivre.model.Usuario;
 import io.jsonwebtoken.Claims;
